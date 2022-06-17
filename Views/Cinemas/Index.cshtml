@@ -1,0 +1,46 @@
+﻿@model IEnumerable<CinemaModel>
+@{
+    ViewData["Title"] = "List of Cinemas";
+}
+
+
+
+<div class="container d-flex justify-content-center flex-column bg-warning">
+    <div class="row text-white d-flex justify-content-center p-2 border border-danger">
+        <a asp-controller="Cinemas" asp-action="Create" class="btn btn-success float-lg-right"><i class="bi bi-plus-circle">Add New Cinema</i></a>
+    </div>
+    <div class="row p-2 border border-success">
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Logo)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Description)</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="align-middle">
+                                <img class="rounded-circle" alt="@Html.DisplayFor(m => item.Name)" src="@Html.DisplayFor(m => item.Logo)" style="max-width: 100px" />
+                            </td>
+                            <td class="align-middle">
+                                @Html.DisplayFor(m => item.Name)
+                            </td>
+                            <td class="align-middle" style="max-width: 400px">
+                                @Html.DisplayFor(m => item.Description)
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-primary" asp-controller="Cinemas" asp-action="Edit" asp-route-id="@item.Id"><i class="bi bi-pencil-square"></i>Edit</a> |
+                                <a class="btn btn-danger text-white" asp-controller="Cinemas" asp-action="Delete" asp-route-id="@item.Id"><i class="bi bi-trash"></i>Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,61 @@
+﻿@model ActorModel
+@{
+    ViewData["Title"] = "Add a new actor";
+}
+
+
+<div class="row">
+    <div class="bg-light col-md-8 offset-2">
+        <p>
+            <h1 class="offset-3"><i class="bi bi-plus-circle"></i>Add a new Actor</h1>
+        </p>
+        <div class="offset-1 row bg-dark" style="max-width: 800px;">
+            <div class="col-md-12">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <img id="ProfilePicturePreview" class="border border-10" style="max-height: 100px; max-width:100px"/>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ProfilePictureURL" class="control-label text-white"></label>
+                        <input asp-for="ProfilePictureURL" class="form-control" />
+                        <span asp-validation-for="ProfilePictureURL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FirstName" class="control-label text-white"></label>
+                        <input asp-for="FirstName" class="form-control" />
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName" class="control-label text-white"></label>
+                        <input asp-for="LastName" class="form-control" />
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                        <div class="form-group">
+                            <label asp-for="Bio" class="control-label text-white"></label>
+                            <input asp-for="Bio" class="form-control" />
+                            <span asp-validation-for="Bio" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" value="Create" class="btn btn-success float-right">Create</button>
+                            <a class="btn btn-outline-secondary" asp-action="Index">Show all</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            var Output = document.getElementById('ProfilePicturePreview');
+            Output.src = $("#ProfilePictureURL").val();
+        })
+        $('#ProfilePictureURL').on('change', function () {
+            var Output = document.getElementById('ProfilePicturePreview');
+            Output.src = $(this).val();
+        })
+    </script>
+
+}
